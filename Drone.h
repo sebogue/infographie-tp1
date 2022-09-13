@@ -124,6 +124,7 @@ public:
         default:
         case 1: // un cube
             matrModel.PushMatrix(); {
+                matrModel.Scale(1.0,1.0,1.75);
                 matrModel.Translate( 0.0, 2.0, 0.0 ); // (bidon) À MODIFIER
                 glUniformMatrix4fv(locmatrModel, 1, GL_FALSE, matrModel);
                 afficherCube();
@@ -132,6 +133,9 @@ public:
             // et son mat
             matrModel.PushMatrix(); {
                 glVertexAttrib3f( locColor, 0.0, 1.0, 1.0 ); // cyan
+                matrModel.Scale(0.2, 0.2, 0.65);
+                matrModel.Translate(0.0, 4.0, 0.0);
+                //matrModel.Rotate(90.0, 0.2, 0.2, 0.65);
                 glUniformMatrix4fv(locmatrModel, 1, GL_FALSE, matrModel);
                 afficherCylindre();
             }matrModel.PopMatrix(); glUniformMatrix4fv(locmatrModel, 1, GL_FALSE, matrModel);
@@ -158,7 +162,8 @@ public:
         matrModel.PushMatrix();{
             // donner la couleur de la première pale
             glVertexAttrib3f( locColor, 0.5, 0.5, 1.0 ); // violet
-            matrModel.Translate( +2.0, 2.0, 0.0 ); // (bidon) À MODIFIER
+            matrModel.Scale(6.0,0.25, 0.0);
+            matrModel.Translate( 0.0, 4.2, 0.0 ); // (bidon) À MODIFIER
             // afficherRepereCourant( ); // débogage: montrer le repère à la position courante
             glUniformMatrix4fv( locmatrModel, 1, GL_FALSE, matrModel );
             afficherQuad();
@@ -179,11 +184,13 @@ public:
 
         // ajouter une ou des transformations afin de tracer chacune des pattes
         matrModel.PushMatrix();{
+            matrModel.Scale(largMembre, largMembre, longMembre);
             matrModel.Translate( -2.0, 2.0, 0.0 ); // (bidon) À MODIFIER
             // afficherRepereCourant( ); // débogage: montrer le repère à la position courante
             glUniformMatrix4fv( locmatrModel, 1, GL_FALSE, matrModel );
             afficherCylindre();
         }
+       
         // ...
     }
 
